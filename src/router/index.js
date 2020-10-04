@@ -25,7 +25,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
+/*
 router.beforeEach((to, from, next) => {
   const isUserLogged = store.getters.isUserLogged
   const requireAuth = to.matched.some(record => record.meta.auth)
@@ -35,6 +35,6 @@ router.beforeEach((to, from, next) => {
   } else {
     next() 
   }
-})
+})*/
 
 export default router

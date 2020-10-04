@@ -6,11 +6,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isUserLogged: false
+    isUserLogged: false,
+    dataArray: []
   },
   mutations: {
-    loginUser(state, responseStatus) {
-      state.isUserLogged = responseStatus
+    loginUser(state, isUserLogged) {
+      state.isUserLogged = isUserLogged
+    },
+    setData(state, dataArray) {
+      state.dataArray = dataArray
     }
   },
   actions: {
@@ -24,7 +28,8 @@ export default new Vuex.Store({
         })
           .then(response => {
             receivedData = response.data
-            commit('loginUser', receivedData.status)  
+            commit('loginUser', receivedData.status)
+            commit('setData', receivedData.response)
           })
           .catch(error => {
             throw error
@@ -37,6 +42,7 @@ export default new Vuex.Store({
   modules: {
   },
   getters: {
-    isUserLogged: s => s.isUserLogged
+    isUserLogged: s => s.isUserLogged,
+    data: s => s.dataArray
   }
 })
